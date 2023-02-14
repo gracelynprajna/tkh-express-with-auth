@@ -16,7 +16,7 @@ export default function createServer() {
 
   app.use("/auth", authRouter);
 
-  app.use("/todo", todoRouter);
+  app.use("/todo", passport.authenticate("jwt", { session: false}), todoRouter);
 
   return app;
 }

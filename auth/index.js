@@ -4,8 +4,7 @@ import { Strategy, ExtractJwt } from "passport-jwt";
 
 export default function setupJWTStrategy(passport){
     //takes out data out from our token
-    passport.use()
-    new Strategy({
+    passport.use(new Strategy({
         //gets jwt from request headers
         jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
         secretOrKey: "secretkey"
@@ -17,5 +16,5 @@ export default function setupJWTStrategy(passport){
             //it will return an error and not return user data
             return done(e, null);
         }
-    })
+    }))
 }
