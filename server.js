@@ -16,7 +16,16 @@ export default function createServer() {
 
   app.use("/auth", authRouter);
 
-  app.use("/todo", passport.authenticate("jwt", { session: false}), todoRouter);
+  // app.use("/todo", passport.authenticate("jwt", { session: false}), todoRouter);
+
+  app.get("/protected", passport.authenticate("jwt", {session: false}), function (request, response) {
+    console.log(request);
+
+    response.status(200).json({
+      success: true,
+      message: "you're good!!"
+    })
+  })
 
   return app;
 }
